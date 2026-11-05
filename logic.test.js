@@ -109,7 +109,12 @@ test('ideas stay out of the wildcard until they have cooled off', () => {
 });
 
 test('a short or thin month does not count as completed', () => {
-  assert.equal(NS.isCompleted(cycle({ listens: everyDay(20) }), '2026-01-20'), false);
+  assert.equal(NS.isCompleted(cycle({ listens: everyDay(13) }), '2026-01-13'), false);
   assert.equal(NS.isCompleted(cycle({ listens: everyDay(5) }), '2026-01-31'), false);
   assert.equal(NS.isCompleted(cycle({ listens: everyDay(20) }), '2026-01-31'), true);
+});
+
+test('a script sorted early counts as completed from day 14', () => {
+  assert.equal(NS.isCompleted(cycle({ listens: everyDay(14) }), '2026-01-14'), true);
+  assert.equal(NS.isCompleted(cycle({ listens: everyDay(21) }), '2026-01-21'), true);
 });

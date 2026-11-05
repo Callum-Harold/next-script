@@ -4,7 +4,7 @@
     monthDays: 30,
     coolOffDays: 14,
     wildcardEvery: 3,
-    completedMinDays: 21,
+    completedMinDays: 14,
     listenMinRate: 0.5,
     longGapDays: 7,
     lateCheckDays: 7,

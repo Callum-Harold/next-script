@@ -9,54 +9,54 @@
 
   const SCRIPT_FOCUS = {
     forget: {
-      why: 'The app or your check-in slipped out of mind.',
-      title: 'Next Script stays on my radar',
-      angle: 'Tie the app to things you already do. Finishing a listen cues the tap, and seeing the calendar check-in makes opening the app the automatic next step.',
+      why: "You lost track of this app, or checked in late.",
+      title: 'I remember to use Next Script',
+      angle: 'Write a script that keeps this app on your mind. For example, suggest that when you finish listening, you open the app and tap "I listened" without thinking about it, and that you open it as soon as your calendar reminder appears.',
     },
     lapse: {
-      why: 'The listening itself dropped below half the days.',
+      why: 'You listened on fewer than half the days.',
       title: 'Listening is the easy part of my day',
-      angle: 'Attach the listen to a fixed cue, like getting into bed. Make pressing play feel effortless and slightly pleasant, with no decision involved.',
+      angle: 'Write a script that makes listening automatic. Pick a moment you already have every day, like getting into bed, and suggest that you press play at that moment without having to decide to.',
     },
     bored: {
-      why: 'The system has started to feel flat.',
-      title: 'Coming back to this feels good',
-      angle: 'Build curiosity about what each month changes. Link the system to the feeling of progress rather than discipline, and let each new month feel like a fresh start.',
+      why: 'Using this app has started to feel boring.',
+      title: 'I enjoy coming back to this',
+      angle: 'Write a script that makes using this system feel rewarding. Suggest that you are curious about what each new script will change, and that coming back feels like making progress, not doing a chore.',
     },
     switch: {
-      why: 'Part of you wants to swap this for something shinier.',
-      title: 'New ideas get parked, and parking feels good',
-      angle: 'Each time a shiny idea or better system appears, you park it, feel relief that it is safe, and return to this month with your attention intact.',
+      why: "You're tempted to replace this system with something else.",
+      title: 'I save new ideas and feel relieved',
+      angle: 'Write a script for handling the pull of new ideas. Suggest that when a new idea or a better system pops up, you save it in this app, feel relieved that it is safe, and go back to what you were doing.',
     },
     doubt: {
-      why: 'You are not convinced you will still be using this in three months.',
-      title: 'I am someone who sticks with this',
-      angle: 'Install the identity. You are the person who comes back, including after a gap. A missed week means you return, not that it is over.',
+      why: "You don't think you'll still be using this in three months.",
+      title: "I'm someone who sticks with this",
+      angle: 'Write a script that makes sticking with this part of who you are. Suggest that you are the kind of person who keeps coming back, and that missing a week just means picking it up again, not giving up.',
     },
     notice: {
-      why: 'You have no direction yet, and ideas are not coming on demand.',
+      why: "You don't have a direction yet, and trying harder isn't producing ideas.",
       title: 'I start noticing options',
-      angle: 'Ask your subconscious to surface paths you have not considered. Options catch your eye during the day, feel interesting, and get written down. No need to decide yet.',
+      angle: 'Write a script that gets your subconscious looking for options. Suggest that work and life paths you had not considered start catching your eye during the day, and that you write them down. You don\'t need to choose one yet.',
     },
     clarify: {
-      why: 'There is a direction, but it is too fuzzy to build skills towards.',
-      title: 'My direction comes into focus',
-      angle: 'Let the options you have noticed sort themselves. One keeps pulling you back, and a clear one-sentence version of it arrives without forcing.',
+      why: 'You have a rough direction, but it\'s too vague to build skills towards.',
+      title: 'My direction becomes clear',
+      angle: 'Write a script that helps one direction stand out. Suggest that out of the options you have noticed, one keeps pulling you back, and that you can soon say it in one clear sentence.',
     },
     realign: {
-      why: 'The direction you have no longer feels right.',
-      title: 'I can feel where I actually want to go',
-      angle: 'Get honest signals about what draws you and what you are only continuing out of habit. Changing course feels clean, not like failing.',
+      why: "Your current direction doesn't feel right any more.",
+      title: 'I can tell where I want to go',
+      angle: 'Write a script that helps you notice what you really want. Suggest that you can tell what genuinely excites you from what you only do out of habit, and that changing course feels fine, not like failing.',
     },
     levelUp: {
-      why: 'Where you are heading is not a real level above where you are now.',
+      why: "Where you're heading isn't a real step up from your life now.",
       title: 'My standards rise',
-      angle: 'Make your current level feel like the floor. Wanting more feels normal and allowed, and you start noticing what the next level up looks like and how people get there.',
+      angle: 'Write a script that raises what you expect from life. Suggest that your current level starts to feel like the minimum, that wanting more feels normal, and that you start noticing what the next level looks like and how people get there.',
     },
   };
 
   const SYSTEM_QUESTIONS = [
-    { id: 'forget', q: 'This month, did you forget this app existed?', options: ['No', 'For a few days', 'For a week or more'] },
+    { id: 'forget', q: 'Since you started this script, did you forget this app existed?', options: ['No', 'For a few days', 'For a week or more'] },
     { id: 'bored', q: 'Opening this app right now feels…', options: ['Fine or interesting', 'A bit flat', 'Like a chore'] },
     { id: 'switch', q: 'Do you want to swap this for a different system, or rebuild it?', options: ['No', 'A little', 'Yes, I have a better idea'] },
     { id: 'doubt', q: 'Honest bet: will you still be using this in three months?', options: ['Yes', 'Not sure', 'Probably not'] },
@@ -74,11 +74,11 @@
 
   const RATING_ROWS = [
     { id: 'fit', label: 'Moves me towards my direction' },
-    { id: 'block', label: 'Lacking it is holding me back now' },
-    { id: 'excite', label: 'Excited to listen for a month' },
+    { id: 'block', label: 'Not having it holds me back now' },
+    { id: 'excite', label: "I'd be excited to listen to it" },
   ];
 
-  const CLOSING_LINE = 'Each time you finish listening, you reach for your phone and tap Next Script. And when your check-in appears on your calendar, you open the app, easily and automatically, curious about what comes next.';
+  const CLOSING_LINE = 'Each time you finish listening, you open Next Script and tap "I listened". And when your check-in appears on your calendar, you open the app, easily and automatically, curious about what comes next.';
 
   function emptyState() {
     return { onboarded: false, lastOpen: null, direction: null, ideas: [], cycles: [], check: null };
@@ -131,14 +131,23 @@
   function onboardingView() {
     return `<div class="stack">
       <h1>Next Script</h1>
-      <p>Each month this picks one thing to hypnotise yourself on, then gets out of your way.</p>
-      <div class="card stack-sm">
-        <p><strong>1. System.</strong> Are you still using this? If not, this month's script fixes that.</p>
-        <p><strong>2. Direction.</strong> Do you know where you're heading, and is it a level up? If not, that's the script.</p>
-        <p><strong>3. Skill.</strong> Both are solid, so your skill ideas get ranked and the best one wins. This is where you'll spend most of your time.</p>
+      <p>This app tells you what your next hypnosis script should be about. You listen to that one script until it's sorted, usually for about a month, then the app helps you choose the next one.</p>
+      <p>It asks three questions, in this order:</p>
+      <div class="card stage-card">
+        <div class="stack-sm"><h3>1. System</h3><p class="small">Are you still using this app? If not, your next script helps you stick with it.</p></div>
+        ${Scenes.scene('system')}
       </div>
-      <div class="card stack-sm">
-        <p><strong>Random ideas are welcome.</strong> Park them in seconds. After 14 days, the ones still exciting can win a wildcard month, which you earn every 3 completed months.</p>
+      <div class="card stage-card">
+        <div class="stack-sm"><h3>2. Direction</h3><p class="small">Do you know where you're heading, and is it a step up from your life now? If not, your next script works on that.</p></div>
+        ${Scenes.scene('direction')}
+      </div>
+      <div class="card stage-card">
+        <div class="stack-sm"><h3>3. Skill</h3><p class="small">If both are fine, your next script builds a belief, habit or skill you need. You rate your ideas and the app ranks them. Most of your scripts will be these.</p></div>
+        ${Scenes.scene('skill')}
+      </div>
+      <div class="card stage-card">
+        <div class="stack-sm"><h3>New ideas are welcome</h3><p class="small">Save them in seconds. If one still excites you after ${RULES.coolOffDays} days, it can become a wildcard: a free-choice script you earn every ${RULES.wildcardEvery} completed scripts.</p></div>
+        ${Scenes.scene('wildcard')}
       </div>
       <button class="btn primary" data-act="begin">Start</button>
     </div>`;
@@ -147,10 +156,10 @@
   function captureCard() {
     const system = ui.captureKind === 'system';
     return `<div class="card stack-sm">
-      <label for="capture">${system ? 'A better system? Park it here.' : 'Random idea? Park it here.'}</label>
+      <label for="capture">${system ? 'Thought of a better system? Save it here and carry on with this one. You\'ll look at it again after ' + RULES.coolOffDays + ' days.' : 'Had a new script idea? Save it here so it can\'t distract you. You\'ll look at it again after ' + RULES.coolOffDays + ' days.'}</label>
       <div class="row">
         <input id="capture" type="text" class="grow" autocomplete="off" placeholder="${system ? 'What is the better system?' : 'e.g. being more charismatic'}">
-        <button class="btn primary small-btn" data-act="capture">Park</button>
+        <button class="btn primary small-btn" data-act="capture">Save</button>
       </div>
       ${ui.toast ? `<p class="ok-line" role="status">${esc(ui.toast)}</p>` : ''}
     </div>`;
@@ -164,7 +173,8 @@
       <button class="btn choice" data-act="signal" data-type="forgot">I forgot about it for a while</button>
       <button class="btn choice" data-act="off-better" data-kind="hypno">I've got a better script idea</button>
       <button class="btn choice" data-act="off-better" data-kind="system">I've got a better system</button>
-      <button class="btn choice" data-act="start-check">Run my check now</button>
+      <button class="btn choice" data-act="start-check">Stop this script and choose a new one</button>
+      <p class="small muted">The first two get counted at your next check. Stopping before day ${RULES.completedMinDays} means this script won't count towards a wildcard.</p>
       <button class="link" data-act="off-toggle">Never mind</button>
     </div>`;
   }
@@ -172,22 +182,24 @@
   function writingView(c) {
     const waited = NS.daysBetween(c.createdOn, NS.today());
     return `<div class="stack">
+      ${Scenes.scene(c.stage)}
       <div class="stack-sm">
         <div>${badge(c.stage)}</div>
         <h1>${esc(c.title)}</h1>
       </div>
-      ${c.why ? `<p class="muted">${esc(c.why)}</p>` : ''}
-      ${waited >= RULES.writingNudgeDays ? `<div class="card notice"><p>${plural(waited, 'day')} in. A rough draft is fine: the idea matters more than the wording, so write it badly in ten minutes and hit record.</p></div>` : ''}
-      ${c.angle ? `<div class="card stack-sm"><h3>An angle for the script</h3><p>${esc(c.angle)}</p></div>` : ''}
+      ${c.why ? `<p class="muted"><strong>Why this script:</strong> ${esc(c.why)}</p>` : ''}
+      <p><strong>Your next step:</strong> write and record this script, then come back here and start your ${RULES.monthDays} days.</p>
+      ${waited >= RULES.writingNudgeDays ? `<div class="card notice"><p>It's been ${plural(waited, 'day')}. A rough draft is fine, because the idea matters more than the wording. Write it badly in ten minutes and hit record.</p></div>` : ''}
+      ${c.angle ? `<div class="card stack-sm"><h3>Script idea</h3><p>${esc(c.angle)}</p></div>` : ''}
       <div class="card stack-sm">
-        <h3>Add this near the end of the script</h3>
+        <h3>Add this to the end of every script</h3>
         <blockquote>${esc(CLOSING_LINE)}</blockquote>
-        <p class="small muted">This is what keeps the system alive between check-ins. Reword it however you like.</p>
+        <p class="small muted">This is a suggestion to come back to this app. It's what keeps you using it when you'd otherwise forget. Reword it however you like.</p>
         <button class="btn small-btn" data-act="copy-line">Copy</button>
       </div>
-      <button class="btn primary" data-act="start-month">Script's ready, start my ${RULES.monthDays} days</button>
+      <button class="btn primary" data-act="start-month">I've recorded it, start my ${RULES.monthDays} days</button>
       ${captureCard()}
-      <button class="link" data-act="start-check">Not feeling this one? Run my check again</button>
+      <button class="link" data-act="start-check">Changed your mind? Choose a different script</button>
     </div>`;
   }
 
@@ -199,19 +211,23 @@
     const ev = NS.evidence(c, on);
     const lastListen = [...(c.listens || [])].sort().pop();
     const quiet = NS.daysBetween(lastListen || c.startOn, on);
-    const dots = Array.from({ length: RULES.monthDays }, (_, i) => {
-      const d = NS.addDays(c.startOn, i);
-      const cls = [(c.listens || []).includes(d) ? 'on' : '', d === on ? 'today' : '', d > on ? 'future' : ''].join(' ');
-      return `<div class="dot ${cls}"></div>`;
-    }).join('');
+    const lit = Array.from({ length: RULES.monthDays }, (_, i) => (c.listens || []).includes(NS.addDays(c.startOn, i)));
+    const todayIndex = finished ? -1 : NS.daysBetween(c.startOn, on);
 
     let banner = '';
     if (finished) {
-      banner = `<div class="card notice stack-sm"><h2>Your month is up</h2><p>Time to find out what comes next. It takes about a minute.</p><button class="btn primary" data-act="start-check">Run my check</button></div>`;
+      banner = `<div class="card notice stack-sm"><h2>Your ${RULES.monthDays} days are up</h2><p>A few quick questions will tell you what your next script should be. It takes about a minute.</p><button class="btn primary" data-act="start-check">Choose my next script</button></div>`;
     } else if (ui.away) {
-      banner = `<div class="card notice stack-sm"><p><strong>Welcome back.</strong> You were away for ${plural(ui.away, 'day')}. You came back, and that's the part that counts. It'll feed into your next check.</p><button class="btn" data-act="start-check">Run my check now</button></div>`;
+      banner = `<div class="card notice stack-sm"><p><strong>Welcome back.</strong> You were away for ${plural(ui.away, 'day')}. You came back, and that's the part that counts. You can keep going with this script, or choose a new one.</p><button class="btn" data-act="start-check">Choose a new script</button></div>`;
     } else if (quiet >= RULES.driftDays) {
-      banner = `<div class="card notice stack-sm"><p>It's been ${plural(quiet, 'day')} since your last listen. Nothing's broken. Listen today, or run your check if this month has stopped working.</p><button class="btn" data-act="start-check">Run my check now</button></div>`;
+      banner = `<div class="card notice stack-sm"><p>It's been ${plural(quiet, 'day')} since your last listen. Nothing's broken. Listen today, or choose a new script if this one has stopped working.</p><button class="btn" data-act="start-check">Choose a new script</button></div>`;
+    }
+
+    let earlyFinish = '';
+    if (!finished) {
+      earlyFinish = day >= RULES.completedMinDays
+        ? `<div class="card stack-sm"><p class="small">Some things install faster than others. If this one already feels sorted, you can move on now.</p><button class="btn" data-act="start-check">This feels sorted, choose my next script</button></div>`
+        : `<p class="small muted">Some things install faster than others. If this feels sorted early, you can move on from day ${RULES.completedMinDays}.</p>`;
     }
 
     return `<div class="stack">
@@ -221,12 +237,13 @@
       </div>
       ${banner}
       ${finished ? '' : `<button class="listen ${listened ? 'done' : ''}" data-act="listen" aria-pressed="${listened}">${listened ? 'Listened today ✓' : 'I listened'}</button>`}
-      <div class="card stack-sm">
-        <div class="dots" aria-hidden="true">${dots}</div>
-        <p class="small muted">${plural(ev.listens, 'listen')} so far. A missed day is fine.</p>
+      <div class="card flush">
+        ${Scenes.constellation(lit, todayIndex)}
+        <p class="pad small muted">Tap "I listened" after each listen and a star lights up. Listens on back-to-back days join together. ${plural(ev.listens, 'listen')} so far, and a missed day is fine.</p>
       </div>
+      ${earlyFinish}
       ${captureCard()}
-      ${finished ? '' : `<a class="btn" href="${esc(calendarUrl(c))}" target="_blank" rel="noopener">Add my check-in to Google Calendar</a>`}
+      ${finished ? '' : `<a class="btn" href="${esc(calendarUrl(c))}" target="_blank" rel="noopener">Add a reminder for day ${RULES.monthDays} to Google Calendar</a>`}
       ${offCard()}
     </div>`;
   }
@@ -235,9 +252,9 @@
     const c = current();
     if (!c) {
       return `<div class="stack">
-        <h1>Nothing running</h1>
-        <p class="muted">Run your check and it'll tell you what this month's script should be.</p>
-        <button class="btn primary" data-act="start-check">Run my check</button>
+        <h1>No script yet</h1>
+        <p class="muted">Answer a few quick questions and the app will tell you what your next script should be.</p>
+        <button class="btn primary" data-act="start-check">Choose my next script</button>
         ${captureCard()}
       </div>`;
     }
@@ -250,8 +267,8 @@
     let meta = '';
     if (idea.list === 'parked') {
       const left = RULES.coolOffDays - NS.daysBetween(idea.createdOn, on);
-      meta = left > 0 ? `Cooling off, ${plural(left, 'day')} left` : 'Ready for your next check';
-      if (idea.kind === 'hypno') actions += `<button class="btn small-btn" data-act="promote" data-id="${esc(idea.id)}">Serves my direction</button>`;
+      meta = left > 0 ? `Waiting ${plural(left, 'more day')}` : "You'll sort this next time you choose a script";
+      if (idea.kind === 'hypno') actions += `<button class="btn small-btn" data-act="promote" data-id="${esc(idea.id)}">It helps my direction, add to skill list</button>`;
     }
     return `<div class="item stack-sm">
       <p>${esc(idea.title)}</p>
@@ -266,28 +283,28 @@
     const parked = list('parked', 'hypno');
     const systems = list('parked', 'system');
     const upgrades = list('upgrade');
-    const group = (title, items, empty) => `<div class="stack-sm section">
+    const group = (title, about, items, empty) => `<div class="stack-sm section">
       <h3>${esc(title)}</h3>
+      ${about ? `<p class="small muted">${esc(about)}</p>` : ''}
       <div class="card">${items.length ? items.map(ideaRow).join('') : `<p class="small muted">${esc(empty)}</p>`}</div>
     </div>`;
     return `<div class="stack">
       <h1>Ideas</h1>
       ${captureCard()}
       <div class="row">
-        <button class="link" data-act="capture-kind">${ui.captureKind === 'system' ? 'Switch to a script idea' : 'Parking a better system instead?'}</button>
+        <button class="link" data-act="capture-kind">${ui.captureKind === 'system' ? 'Saving a script idea instead?' : 'Saving a better system instead?'}</button>
       </div>
       <div class="card stack-sm">
-        <label for="skill-add">Add to your skill list directly</label>
-        <p class="small muted">What would someone already at your direction believe, notice or do without thinking?</p>
+        <label for="skill-add">Know it will help your direction? Add it to your skill list. Ask yourself: what would someone already there believe, notice or do without thinking?</label>
         <div class="row">
           <input id="skill-add" type="text" class="grow" autocomplete="off" placeholder="A belief, habit or skill">
           <button class="btn small-btn" data-act="skill-add">Add</button>
         </div>
       </div>
-      ${group('Skill list', skill, 'Nothing yet. These get ranked in your check.')}
-      ${group('Parked script ideas', parked, 'Nothing parked.')}
-      ${systems.length ? group('Parked system ideas', systems, '') : ''}
-      ${upgrades.length ? group('Upgrades to make to this system', upgrades, '') : ''}
+      ${group('Skill list', 'Beliefs, habits and skills that help your direction. You rate these and the app ranks them when you choose a script.', skill, 'Nothing here yet.')}
+      ${group('Saved script ideas', `New ideas wait here for ${RULES.coolOffDays} days. After that, you decide whether each one goes on your skill list, stays as a possible wildcard, or gets removed.`, parked, 'Nothing saved.')}
+      ${systems.length ? group('Ideas for a better system', `These wait ${RULES.coolOffDays} days too, so you don't drop this system on impulse.`, systems, '') : ''}
+      ${upgrades.length ? group('Improvements to make to this system', 'Good ideas that survived the wait. Use them to improve this system instead of replacing it.', upgrades, '') : ''}
     </div>`;
   }
 
@@ -306,8 +323,9 @@
       <div class="card stack-sm">
         <h3>Wildcard</h3>
         <div class="progress-bar" aria-hidden="true"><span style="width:${(shown / wc.needed) * 100}%"></span></div>
-        <p class="small">${wc.unlocked ? 'Unlocked. You can use it at your next check, if an idea has cooled off.' : `${shown} of ${wc.needed} completed months.`}</p>
-        <p class="small muted">A month counts as completed after ${RULES.completedMinDays}+ days with listens on at least half of them.</p>
+        <p class="small">A wildcard is a free pick: a script on anything you're excited about, even if it doesn't help your direction.</p>
+        <p class="small"><strong>${wc.unlocked ? 'Unlocked. You can use it next time you choose a script, if a saved idea has waited long enough.' : `${shown} of ${wc.needed} completed scripts needed.`}</strong></p>
+        <p class="small muted">A script counts as completed if you stay on it for ${RULES.completedMinDays}+ days and listen on at least half of them.</p>
       </div>
       <div class="stack-sm section">
         <h3>History</h3>
@@ -320,10 +338,10 @@
       <details class="card">
         <summary>How it decides</summary>
         <div class="stack-sm section small">
-          <p><strong>System</strong> fails if any answer is the worst option, two answers wobble, you check in ${RULES.lateCheckDays}+ days late, you go ${RULES.longGapDays}+ days without a listen, or you listen on under half the days. Anything you logged under "Something feels off" counts as a wobble.</p>
-          <p><strong>Direction</strong> fails if you can't state it clearly, it no longer feels like yours, or it isn't a level above your life now.</p>
-          <p><strong>Skill</strong> score uses direction fit (×3), how much lacking it holds you back (×3) and excitement (×2). The top score is a suggestion, and you can pick any of them.</p>
-          <p><strong>Wildcard</strong> needs ${RULES.wildcardEvery} completed months since the last one, both gates passed, and an idea parked for ${RULES.coolOffDays}+ days.</p>
+          <p><strong>System:</strong> your next script is about the system if you pick the last answer on any question, pick a middle answer on two questions, come back ${RULES.lateCheckDays}+ days after your ${RULES.monthDays} days end, go ${RULES.longGapDays}+ days without a listen, or listen on under half the days. Anything you logged under "Something feels off?" counts as a middle answer.</p>
+          <p><strong>Direction:</strong> your next script is about direction if you can't say it clearly, it no longer feels like yours, or it isn't a step up from your life now.</p>
+          <p><strong>Skill:</strong> each idea's score uses how much it moves you towards your direction (×3), how much not having it holds you back (×3) and how excited you are (×2). The top score is a suggestion, and you can pick any of them.</p>
+          <p><strong>Wildcard:</strong> needs ${RULES.wildcardEvery} completed scripts since your last wildcard, the system and direction questions passed, and an idea saved for ${RULES.coolOffDays}+ days.</p>
         </div>
       </details>
       <div class="card stack-sm">
@@ -381,6 +399,7 @@
   function questionView(prefix, title, q, index, total, extra) {
     return `<div class="stack">
       <p class="progress">${esc(title)} · ${index} of ${total}</p>
+      ${prefix === 'sys' && index === 1 ? '<p class="muted">First, a check that you\'re still using this app. If you\'re not, your next script will help with that.</p>' : ''}
       ${extra || ''}
       <h2>${esc(q.q)}</h2>
       ${q.hint ? `<p class="muted">${esc(q.hint)}</p>` : ''}
@@ -406,8 +425,8 @@
     const notes = [`${plural(ev.listens, 'listen')} in ${plural(ev.elapsed, 'day')}`, `longest gap ${plural(ev.longestGap, 'day')}`];
     if (ev.lateBy) notes.push(`check-in ${plural(ev.lateBy, 'day')} late`);
     const signals = Object.values(ev.signals).reduce((a, b) => a + b, 0);
-    if (signals) notes.push(`${plural(signals, 'thing')} logged as off`);
-    return `<div class="card small"><strong>This month:</strong> ${esc(notes.join(', '))}.</div>`;
+    if (signals) notes.push(`${plural(signals, 'problem')} logged`);
+    return `<div class="card small"><strong>Your current script:</strong> ${esc(notes.join(', '))}.</div>`;
   }
 
   function failView(stage, reason, intro) {
@@ -418,13 +437,14 @@
     const repeat = prev && prev.stage === stage && prev.reason === reason;
     return `<div class="stack">
       <p class="progress">${esc(intro)}</p>
+      ${Scenes.scene(stage)}
       <div>${badge(stage)}</div>
-      <h2>This month's script needs to be about ${stage === 'system' ? 'the system' : 'your direction'}</h2>
-      <p>${esc(focus.why)}</p>
-      ${repeat ? `<div class="card notice"><p>This came up last month too, so hypnosis alone may not be the fix. Before you repeat it, try changing something outside the script as well, like when you listen or how you get reminded.</p></div>` : ''}
-      <div class="card stack-sm"><h3>An angle for the script</h3><p>${esc(focus.angle)}</p></div>
+      <h2>Your next script should be about ${stage === 'system' ? 'sticking with this system' : 'your direction'}</h2>
+      <p><strong>Why:</strong> ${esc(focus.why)}</p>
+      ${repeat ? `<div class="card notice"><p>This came up last time too, so hypnosis alone may not be the fix. Before you repeat it, try changing something outside the script as well, like when you listen or how you get reminded.</p></div>` : ''}
+      <div class="card stack-sm"><h3>Script idea</h3><p>${esc(focus.angle)}</p></div>
       <div>
-        <label for="fail-title">Script idea</label>
+        <label for="fail-title">Name for this script (change it if you like)</label>
         <input id="fail-title" type="text" value="${esc(focus.title)}">
       </div>
       <button class="btn primary" data-act="use-focus" data-stage="${esc(stage)}" data-reason="${esc(reason)}">Make this my script</button>
@@ -435,20 +455,21 @@
   function firstView() {
     const focus = {
       title: 'Using Next Script is just what I do',
-      angle: 'Systems are what tend to get dropped, so this comes first. Finishing a listen cues the tap, a calendar check-in cues the app, and coming back feels easy, including after a gap. New ideas get parked with a feeling of relief.',
+      angle: 'Write a script that makes this app a normal part of your routine. Suggest that after you listen, you open the app and tap "I listened". Suggest that you open it when your calendar reminder appears, and that coming back feels easy, even after a gap. Suggest too that when a new idea pops up, you save it here and feel relieved.',
     };
     return `<div class="stack">
       <p class="progress">Your first month</p>
+      ${Scenes.scene('system')}
       <div>${badge('system')}</div>
-      <h2>Start by making the system stick</h2>
-      <p>There's no history to check yet, and everything else depends on you still using this next month.</p>
-      <div class="card stack-sm"><h3>An angle for the script</h3><p>${esc(focus.angle)}</p></div>
+      <h2>Your first script should be about sticking with this system</h2>
+      <p><strong>Why:</strong> a goal system only helps if you keep using it, and everything else in this app depends on that. There's no history to check yet, so this comes first.</p>
+      <div class="card stack-sm"><h3>Script idea</h3><p>${esc(focus.angle)}</p></div>
       <div>
-        <label for="fail-title">Script idea</label>
+        <label for="fail-title">Name for this script (change it if you like)</label>
         <input id="fail-title" type="text" value="${esc(focus.title)}">
       </div>
       <button class="btn primary" data-act="use-first" data-angle="${esc(focus.angle)}">Make this my script</button>
-      <button class="link" data-act="skip-first">Already have a system script? Go to the checks</button>
+      <button class="link" data-act="skip-first">Already have a script like this? Skip this step</button>
       ${checkFooter()}
     </div>`;
   }
@@ -456,8 +477,9 @@
   function directionStartView() {
     const text = state.direction ? state.direction.text : '';
     return `<div class="stack">
-      ${Object.keys(state.check.sys).length ? '<p class="ok-line">System check passed ✓</p>' : ''}
+      ${Object.keys(state.check.sys).length ? '<p class="ok-line">You\'re sticking with the system ✓</p>' : ''}
       <p class="progress">Direction · 1 of 3</p>
+      <p class="muted">Next, a check that you know where you're heading. Skills only help once you know what they're for.</p>
       <h2>Where are you heading?</h2>
       <div>
         <label for="dir-text">In one sentence, for work, life or both</label>
@@ -478,14 +500,14 @@
     const remaining = pendingTriage().length;
     const age = NS.daysBetween(idea.createdOn, NS.today());
     const buttons = idea.kind === 'system'
-      ? `<button class="btn choice" data-act="triage" data-to="upgrade" data-id="${esc(idea.id)}">Still good: add it to my upgrade list</button>
-         <button class="btn choice" data-act="triage" data-to="binned" data-id="${esc(idea.id)}">The urge has passed: bin it</button>`
-      : `<button class="btn choice" data-act="triage" data-to="skill" data-id="${esc(idea.id)}">It serves my direction: add to skill list</button>
-         <button class="btn choice" data-act="triage" data-to="keep" data-id="${esc(idea.id)}">Off-direction but still exciting: keep for a wildcard</button>
-         <button class="btn choice" data-act="triage" data-to="binned" data-id="${esc(idea.id)}">The spark has gone: bin it</button>`;
+      ? `<button class="btn choice" data-act="triage" data-to="upgrade" data-id="${esc(idea.id)}">Still a good idea: use it to improve this system</button>
+         <button class="btn choice" data-act="triage" data-to="binned" data-id="${esc(idea.id)}">Not interested any more: remove it</button>`
+      : `<button class="btn choice" data-act="triage" data-to="skill" data-id="${esc(idea.id)}">It helps my direction: add it to my skill list</button>
+         <button class="btn choice" data-act="triage" data-to="keep" data-id="${esc(idea.id)}">It doesn't help my direction, but I'm still excited: keep it for a wildcard</button>
+         <button class="btn choice" data-act="triage" data-to="binned" data-id="${esc(idea.id)}">Not interested any more: remove it</button>`;
     return `<div class="stack">
-      <p class="progress">Parked ideas · ${plural(remaining, 'idea')} to sort</p>
-      <p class="muted">You parked this ${plural(age, 'day')} ago${idea.kind === 'system' ? ' as a better system' : ''}:</p>
+      <p class="progress">Saved ideas · ${plural(remaining, 'idea')} to sort</p>
+      <p class="muted">You saved this ${plural(age, 'day')} ago${idea.kind === 'system' ? ' as a better system' : ''}. It's waited long enough, so decide what to do with it:</p>
       <h2>${esc(idea.title)}</h2>
       <div class="stack-sm">${buttons}</div>
       ${checkFooter()}
@@ -496,9 +518,10 @@
     const wc = NS.wildcardStatus(state.cycles.concat(openAsDone()), state.ideas, NS.today());
     return `<div class="stack">
       <p class="progress">You earned this</p>
+      ${Scenes.scene('wildcard')}
       <div>${badge('wildcard')}</div>
       <h2>Wildcard unlocked</h2>
-      <p>Spend this month on something you just want, or save it and go to your ranked list. It'll still be here next time.</p>
+      <p>A wildcard is a free pick: your next script can be about something you're just excited about, even if it doesn't help your direction. Pick one of your saved ideas, or save the wildcard for later and go to your skill list.</p>
       <div class="stack-sm">
         ${wc.ripe.map((i) => `<button class="btn choice" data-act="pick" data-stage="wildcard" data-id="${esc(i.id)}">${esc(i.title)}</button>`).join('')}
       </div>
@@ -520,9 +543,9 @@
     const c = current();
     const canRepeat = c && c.startOn && (c.stage === 'skill' || c.stage === 'wildcard');
     const cooling = state.ideas.filter((i) => i.list === 'parked' && i.kind === 'hypno' && !NS.isRipe(i, NS.today())).length;
-    const head = `<p class="ok-line">System and direction passed ✓</p>
-      <h2>${state.check.ranked ? 'Your ranking' : "Rate what's best right now"}</h2>
-      ${state.direction ? `<blockquote>${esc(state.direction.text)}</blockquote>` : ''}`;
+    const head = `<p class="ok-line">System and direction are both fine ✓</p>
+      <h2>${state.check.ranked ? 'Your ranking' : 'Rate your skill ideas'}</h2>
+      ${state.direction ? `<p class="small muted">Your direction:</p><blockquote>${esc(state.direction.text)}</blockquote>` : ''}`;
     const adder = `<div class="card stack-sm">
       <label for="skill-add">What would someone already there believe, notice or do without thinking?</label>
       <div class="row">
@@ -530,11 +553,11 @@
         <button class="btn small-btn" data-act="skill-add">Add</button>
       </div>
     </div>`;
-    const repeat = canRepeat ? `<button class="btn" data-act="repeat">Keep "${esc(c.title)}" for another month</button>` : '';
-    const coolingNote = cooling ? `<p class="small muted">${plural(cooling, 'parked idea')} still cooling off.</p>` : '';
+    const repeat = canRepeat ? `<button class="btn" data-act="repeat">Not sorted yet: stay on "${esc(c.title)}" for another ${RULES.monthDays} days</button>` : '';
+    const coolingNote = cooling ? `<p class="small muted">${plural(cooling, 'saved idea')} still waiting out the ${RULES.coolOffDays} days.</p>` : '';
 
     if (!skill.length) {
-      return `<div class="stack">${head}<p>Your skill list is empty, so add at least one idea to continue.</p>${adder}${repeat}${coolingNote}${checkFooter()}</div>`;
+      return `<div class="stack">${head}<p>Your skill list is empty. Add at least one belief, habit or skill to work on, and it can become your next script.</p>${adder}${repeat}${coolingNote}${checkFooter()}</div>`;
     }
 
     if (state.check.ranked) {
@@ -552,7 +575,7 @@
     }
 
     return `<div class="stack">${head}
-      <p class="small muted">1 is low, 3 is high. Use what's true today, not what should be true.</p>
+      <p class="small muted">Give each idea a score from 1 (low) to 3 (high) on the three lines below it, based on how things are today. The app then ranks them for you.</p>
       ${skill.map((i) => `<div class="card stack-sm"><p><strong>${esc(i.title)}</strong></p>${RATING_ROWS.map((r) => rateRow(i, r)).join('')}</div>`).join('')}
       <button class="btn primary" data-act="show-rank">Rank them</button>
       ${adder}
@@ -726,7 +749,8 @@
         title: idea.title,
         stage: el.dataset.stage,
         ideaId: idea.id,
-        why: el.dataset.stage === 'wildcard' ? 'Your earned wildcard month.' : 'The best fit for where you are heading right now.',
+        why: el.dataset.stage === 'wildcard' ? "You earned a wildcard and chose this idea." : 'You chose this from your ranked skill list.',
+        angle: `Write a script that installs this idea: "${idea.title}". Suggest that it is already true of you, then describe what you notice, feel and do differently in everyday situations because of it.`,
       });
     },
     repeat() {
@@ -744,7 +768,7 @@
       const title = capturedTitle('capture');
       if (!title) return;
       addIdea(title, 'parked', ui.captureKind);
-      ui.toast = `Parked. It's safe, and you'll see it again in ${RULES.coolOffDays} days.`;
+      ui.toast = `Saved. You'll look at it again the next time you choose a script after ${RULES.coolOffDays} days.`;
       ui.captureKind = 'hypno';
       save();
       render();
@@ -788,7 +812,7 @@
       const c = current();
       c.signals.push({ type: el.dataset.type, on: NS.today() });
       ui.offOpen = false;
-      ui.toast = 'Logged. It counts towards your next check. You can run the check early if you need to.';
+      ui.toast = 'Noted. This will count when you next choose a script.';
       save();
       render();
     },
@@ -916,6 +940,11 @@
 
   if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => {});
   if ('serviceWorker' in navigator && location.protocol === 'https:') {
+    // When an update lands, reload onto it. Your data and any check in progress are already saved.
+    const hadController = !!navigator.serviceWorker.controller;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (hadController) location.reload();
+    });
     navigator.serviceWorker.register('sw.js').catch(() => {});
   }
 })();

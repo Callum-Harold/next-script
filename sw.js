@@ -1,9 +1,11 @@
-// Keeps the app working offline. Bump VERSION whenever a file changes.
-const VERSION = 'next-script-1';
-const FILES = ['./', 'index.html', 'style.css', 'logic.js', 'app.js', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png'];
+// Keeps the app working offline. Bump VERSION whenever a file changes, or phones keep the old copy.
+const VERSION = 'next-script-2';
+const FILES = ['./', 'index.html', 'style.css', 'logic.js', 'scenes.js', 'app.js', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'assets/background.svg', 'assets/CreateGoal.svg', 'assets/ViewGoal.svg', 'assets/TrackGoal.svg'];
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(caches.open(VERSION).then((cache) => cache.addAll(FILES)).then(() => self.skipWaiting()));
+  // Skip the browser's HTTP cache, or an update could store stale files under the new version.
+  const fresh = FILES.map((f) => new Request(f, { cache: 'reload' }));
+  event.waitUntil(caches.open(VERSION).then((cache) => cache.addAll(fresh)).then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', (event) => {
